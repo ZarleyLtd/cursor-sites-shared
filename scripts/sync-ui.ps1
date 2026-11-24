@@ -62,7 +62,7 @@ foreach ($name in $confirmTargets) {
 }
 
 # Working indicator — Splitify (keeps SplitifyWorking alias in shared JS)
-$workingTargets = @('Splitify', 'ierne-tennis')
+$workingTargets = @('Splitify', 'ierne-tennis', 'Edison')
 foreach ($name in $workingTargets) {
     Sync-Pair -ProjectName $name -JsName 'working-indicator.js' -CssName 'working-indicator.css'
 }
