@@ -203,6 +203,8 @@ FamilyTree z-index, low to high: header and tab bar `30`, hint banner `45`, ligh
 
 The popover paints above sheets and the lightbox. The hint banner paints **under** them, so arming help from a sheet’s **?** changes the cursor and still explains the next tap, but the banner can sit behind the sheet. A new app that wants the banner visible over overlays should raise `.help-hint` above the overlay and keep `.help-popover` above the banner.
 
+**Native modal `<dialog>`s** (`showModal()`) sit in the browser's top layer, and no z-index on a `<body>` child reaches them. In an app whose overlays are native dialogs, append the banner and the popover to the topmost open modal dialog instead of `<body>`. Stomper's engine does this in `host()`.
+
 ## Wiring
 
 Script order on every page (FamilyTree rule: config → utils → components → pages → `main.js`):
@@ -250,10 +252,11 @@ Chart files that set `data-help` on SVG: `pedigree-chart.js`, `descendants-chart
 | Project | This pattern |
 |---------|----------------|
 | FamilyTree | Reference implementation. Header **?** on every page, plus sheet and lightbox. Catalog in `help-catalog.js`. |
+| Stomper | Copied from FamilyTree. One page (`data-page="player"`). There is a **?** in the top bar and in each native `<dialog>` header, and `host()` mounts the banner and popover inside the open modal. In help mode, `.video::after` covers the YouTube iframe. Catalog `window.StomperHelpCatalog` in `assets/js/utils/help-catalog.js`. |
 | Splitify | A different help UI. The **?** (`help-strip-trigger` in `assets/js/pages/uploader.js`) opens a static “How it works” dialog of illustrated steps (`#help-strip-dialog` in `index.html`). No `data-help`, no armed mode, no per-control popover. |
 | theConfessional, theGolfApp, BGS, Edison, Scrabble, RnR, ierne-snooker, ZarleyClosedown, HelloWorldCursorSite, 4NextBus, 4NextDart, 4NextLocalTrain, 4NextTram, PubliiCrossguns | No contextual-help markup or engine. |
 
-Searched sibling repos for `data-help`, `ContextualHelp`, `help-catalog`, `contextual-help`, `help-mode`, and help-labelled buttons. Only FamilyTree and Splitify’s strip matched, and they are different patterns.
+Searched sibling repos for `data-help`, `ContextualHelp`, `help-catalog`, `contextual-help`, `help-mode`, and help-labelled buttons. Only FamilyTree and Splitify’s strip matched, and they are different patterns. Stomper adopted the pattern later.
 
 ## Copying into another app
 
