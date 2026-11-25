@@ -11,8 +11,9 @@ Cross-project patterns shared by multiple repos under this folder. When asking a
 | Edison-style installable app | `installable-app` | [installable-app/INSTALLABLE_APP.md](installable-app/INSTALLABLE_APP.md) |
 | Connect-style user account | `user-account` | [account/USER_ACCOUNT.md](account/USER_ACCOUNT.md) |
 | Shared Supabase database | `shared-supabase` | [supabase/SHARED_DATABASE.md](supabase/SHARED_DATABASE.md) |
+| JP logo (footer credit) | `jp-logo` | [jp-logo/JP_LOGO.md](jp-logo/JP_LOGO.md) |
 
-Synced UI code (edit under `ui/`, then run `scripts/sync-ui.ps1`): brief message, confirm dialog (BGS), working indicator (Splitify). FamilyTree’s sheet-based confirm is not overwritten by sync until migrated.
+Synced UI code (edit under `ui/` or `jp-logo/`, then run `scripts/sync-ui.ps1`): brief message, confirm dialog (BGS), working indicator (Splitify), JP logo (Stomper). FamilyTree’s sheet-based confirm is not overwritten by sync until migrated.
 
 ## Brief message
 
@@ -77,6 +78,17 @@ Several apps share one Supabase project with per-app schemas. Do not use `supaba
 
 - **Canonical spec:** [supabase/SHARED_DATABASE.md](supabase/SHARED_DATABASE.md)
 - **Skill:** `shared-supabase`
+
+## JP logo
+
+The owner's JP logo as a small "Created by" credit, usually in the footer. It is a button: tapping it plays the logo animation backwards to an upright J and P, then forwards to the logo again.
+
+- **Canonical spec:** [jp-logo/JP_LOGO.md](jp-logo/JP_LOGO.md)
+- **Canonical files:** [jp-logo/](jp-logo/) (PNG, script-driven SVG, `jp-logo.js`, `jp-logo.css`); generator and GIF/WebP/standalone SVG in `jp-logo/source/`
+- **Reference implementation:** Stomper
+- **Skill:** `jp-logo`
+
+Synced by `sync-ui.ps1` to the apps in `$jpLogoTargets`. Change the animation with `jp-logo/source/jpLogo-animate.py`, never by editing an app copy.
 
 ## Candidates (not yet first-class)
 

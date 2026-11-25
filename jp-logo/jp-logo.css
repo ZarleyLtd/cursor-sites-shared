@@ -1,0 +1,30 @@
+/* JP logo button. Canonical copy: cursor-sites-shared/jp-logo/jp-logo.css (spec: jp-logo/JP_LOGO.md).
+   Apps get a synced copy from scripts/sync-ui.ps1. Theme it with the variables below, set on
+   .jp-logo or any ancestor, rather than editing this file. */
+.jp-logo {
+  display: inline-block;
+  vertical-align: middle;
+  padding: 0;
+  border: 0;
+  border-radius: 4px;
+  background: none;
+  color: var(--jp-logo-color, #fff);
+  line-height: 0;
+  cursor: pointer;
+}
+.jp-logo img,
+.jp-logo svg {
+  display: block;
+  height: var(--jp-logo-height, 22px);
+  width: auto;
+  aspect-ratio: 2000 / 1186;
+}
+.jp-logo:focus-visible {
+  outline: 2px solid var(--jp-logo-focus, currentColor);
+  outline-offset: 2px;
+}
+
+/* Dark logo for light backgrounds. The animated SVG follows --jp-logo-color; the PNG fallback is
+   white, so it is inverted here. */
+.jp-logo--dark { --jp-logo-color: #000; }
+.jp-logo--dark img { filter: invert(1); }

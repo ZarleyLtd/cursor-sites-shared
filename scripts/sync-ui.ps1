@@ -67,4 +67,34 @@ foreach ($name in $workingTargets) {
     Sync-Pair -ProjectName $name -JsName 'working-indicator.js' -CssName 'working-indicator.css'
 }
 
+# JP logo: "Created by" footer logo that replays its animation when tapped (spec: jp-logo/JP_LOGO.md)
+function Sync-JpLogo {
+    param([string]$ProjectName)
+    $project = Join-Path $sitesRoot $ProjectName
+    if (-not (Test-Path $project)) {
+        Write-Warning "Skipping missing project: $ProjectName"
+        return
+    }
+    $src = Join-Path $sharedRoot 'jp-logo'
+    $copies = @(
+        @{ From = 'jpLogo-white-rotated-2000.png'; To = 'assets\icons\jpLogo-white-rotated-2000.png'; Binary = $true },
+        @{ From = 'jpLogo-animated.svg'; To = 'assets\icons\jpLogo-animated.svg'; Binary = $false },
+        @{ From = 'jp-logo.js'; To = 'assets\js\components\jp-logo.js'; Binary = $false },
+        @{ From = 'jp-logo.css'; To = 'assets\css\jp-logo.css'; Binary = $false }
+    )
+    foreach ($c in $copies) {
+        $dest = Join-Path $project $c.To
+        $dir = Split-Path -Parent $dest
+        if (-not (Test-Path $dir)) { New-Item -ItemType Directory -Path $dir -Force | Out-Null }
+        if ($c.Binary) { Copy-Item -LiteralPath (Join-Path $src $c.From) -Destination $dest -Force }
+        else { Copy-Utf8File (Join-Path $src $c.From) $dest }
+    }
+    Write-Host "Synced JP logo -> $ProjectName"
+}
+
+$jpLogoTargets = @('Stomper')
+foreach ($name in $jpLogoTargets) {
+    Sync-JpLogo -ProjectName $name
+}
+
 Write-Host 'Done.'

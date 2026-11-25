@@ -45,6 +45,7 @@ When the user names one of these patterns, use the matching skill. Each skill po
 | "Edison-style installable app" | `installable-app` | `cursor-sites-shared/installable-app/INSTALLABLE_APP.md` |
 | "Connect-style user account" | `user-account` | `cursor-sites-shared/account/USER_ACCOUNT.md` |
 | Shared Supabase database | `shared-supabase` | `cursor-sites-shared/supabase/SHARED_DATABASE.md` |
+| JP logo ("Created by" footer credit) | `jp-logo` | `cursor-sites-shared/jp-logo/JP_LOGO.md` |
 
 Pick the pattern by situation:
 
@@ -68,6 +69,8 @@ The brief message, confirm dialog and working indicator code lives in `cursor-si
 1. Edit the canonical file in `cursor-sites-shared/ui/`. **Never edit an app's copy.**
 2. Run `powershell -ExecutionPolicy Bypass -File cursor-sites-shared\scripts\sync-ui.ps1`.
 3. Commit in each affected app repo.
+
+The JP logo is synced the same way from `cursor-sites-shared/jp-logo/`: the PNG and animated SVG go to `assets/icons/`, `jp-logo.js` to `assets/js/components/` and `jp-logo.css` to `assets/css/`.
 
 The target list for each pattern is defined in the script. FamilyTree's sheet-based confirm is intentionally not synced. Contextual help, installable app and user account are specs only: copy from the reference app, nothing is synced.
 
