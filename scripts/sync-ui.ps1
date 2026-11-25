@@ -49,7 +49,7 @@ function Sync-Pair {
 # Brief message
 $briefTargets = @(
     'theGolfApp', 'BGS', 'Splitify', 'theConfessional', 'Edison', 'FamilyTree',
-    'Scrabble', 'ierne-snooker', 'PubliiCrossguns', 'ierne-tennis', 'ChordDemo'
+    'Scrabble', 'ierne-snooker', 'PubliiCrossguns', 'ierne-tennis', 'Stomper'
 )
 foreach ($name in $briefTargets) {
     Sync-Pair -ProjectName $name -JsName 'brief-message.js' -CssName 'brief-message.css'
