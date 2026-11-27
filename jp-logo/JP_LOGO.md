@@ -49,6 +49,11 @@ Set these on `.jp-logo` or any ancestor, such as `.footer`:
 
 On a light background, add `jp-logo--dark` to the button. That makes the SVG black and inverts the PNG fallback to match.
 
+## Where it goes in each kind of app
+
+- **Publii-based apps** (BGS, theGolfApp, ierne-snooker, ierne-tennis, PubliiCrossguns): replace the old `by JP` / `by JPP` span in `.footer__copyright` with `Created by` + the button, in `components/footer.html` and every page. Load `jp-logo.js` right after `nav-active.js` (in `components/scripts.html` and every page). Put `@import url('jp-logo.css');` on the **first line** of `style.css`, because an `@import` after any rule is ignored. Set the colour inline on the button (`style="--jp-logo-color: …"`), as the old credit did. These themes style every button globally; `jp-logo.css` already overrides that. theGolfApp's `admin/` pages use the footer for page titles and get no credit.
+- **App-shell apps** without a footer: ask where the credit should go before adding one.
+
 ## Adding it to an app
 
 1. Add the app to `$jpLogoTargets` in `scripts/sync-ui.ps1`, then run `powershell -ExecutionPolicy Bypass -File cursor-sites-shared\scripts\sync-ui.ps1`.

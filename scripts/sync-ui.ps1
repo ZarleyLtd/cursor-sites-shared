@@ -92,7 +92,9 @@ function Sync-JpLogo {
     Write-Host "Synced JP logo -> $ProjectName"
 }
 
-$jpLogoTargets = @('Stomper')
+$jpLogoTargets = @(
+    'Stomper', 'BGS', 'theGolfApp', 'ierne-snooker', 'ierne-tennis', 'PubliiCrossguns', 'FamilyTree', 'theConfessional'
+)
 foreach ($name in $jpLogoTargets) {
     Sync-JpLogo -ProjectName $name
 }
